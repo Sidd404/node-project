@@ -1,0 +1,100 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Techwondoe task Api Documentation",
+    "description": "Techwondoe task Api Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Module"
+    },
+    {
+      "name": "Company",
+      "description": "Company Module"
+    },
+    {
+      "name": "Team",
+      "description": "Team Module"
+    },
+    {
+      "name": "Admin",
+      "description": "Admin Module"
+    }
+  ],
+  "paths": {
+    "/admin/login": {
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Login as Admin",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login as User",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "login": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Enter your username",
+            "example": "xyz"
+          }
+        }
+      }
+    }
+  }
+}

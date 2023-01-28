@@ -1,0 +1,333 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Techwondoe task Api Documentation",
+    "description": "Techwondoe task Api Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Module"
+    },
+    {
+      "name": "Company",
+      "description": "Company Module"
+    },
+    {
+      "name": "Team",
+      "description": "Team Module"
+    },
+    {
+      "name": "Admin",
+      "description": "Admin Module"
+    }
+  ],
+  "paths": {
+    "/company": {
+      "post": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Create Company",
+        "description": "Enter Company details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/createCompany"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createCompany"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Get companies and their teams",
+        "description": "Enter company id to get specific company's team or else get teams of all companies.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/company_id"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/company/search": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Search companies",
+        "description": "Enter company name to search for.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/keyword"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/company/details/{_id}": {
+      "get": {
+        "tags": [
+          "Company"
+        ],
+        "summary": "Get company details",
+        "description": "Enter company id to get details.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/_id"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/{company_id}/team": {
+      "post": {
+        "tags": [
+          "Team"
+        ],
+        "summary": "Create team",
+        "description": "Enter team details",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/company_id1"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/createTeam"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/createTeam"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Login as Admin",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login as User",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "createCompany": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Enter Company name",
+            "example": "Company A"
+          },
+          "ceo": {
+            "type": "string",
+            "description": "Enter Company CEO",
+            "example": "XYZ"
+          },
+          "address": {
+            "type": "string",
+            "description": "Enter Company address",
+            "example": "New york"
+          }
+        },
+        "required": [
+          "name",
+          "ceo"
+        ]
+      },
+      "createTeam": {
+        "type": "object",
+        "properties": {
+          "team_lead_name": {
+            "type": "string",
+            "description": "Enter team lead name",
+            "example": "Team lead A"
+          }
+        },
+        "required": [
+          "team_lead_name"
+        ]
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "Enter your username",
+            "example": "xyz"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "company_id": {
+        "name": "company_id",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "_id": {
+        "name": "_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "keyword": {
+        "name": "keyword",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "company_id1": {
+        "name": "company_id",
+        "in": "path",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "access_token": {
+        "type": "apiKey",
+        "name": "authorization",
+        "in": "header"
+      }
+    }
+  }
+}

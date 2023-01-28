@@ -1,0 +1,14 @@
+{
+  "inputs": [
+    {
+      "inputFile": "./src/modules/company/company.json"
+    },
+    {
+      "inputFile": "./src/modules/team/team.json"
+    },
+    {
+      "inputFile": "./src/modules/user/user.json"
+    }
+  ],
+  "output": "./src/output.openapi.json"
+}
